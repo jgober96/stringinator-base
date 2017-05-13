@@ -1,29 +1,30 @@
 const _ = require('./underbar');
 
 const first = function(str, n) {
-  // Your code goes here
+  return _.first(str, n);
 };
 
 const last = function(str, n) {
-  // Your code goes here
+  return _.last(str, n)
 };
 
 const removeChar = function(str, target) {
   // hint: use _.reject
-  // Your code goes here
+  return (_.reject(str, (val) => (val === target))).join('');
 };
 
 const hasChar = function(str, target) {
   // hint: use _.some
-  // Your code goes here
+  return _.some(str, (val) => !!(val === target));
 };
 
+// reg exp adopted from stack overflow
 const isOnlyDigits = function(str) {
-  // Your code goes here
+  return _.every(str.split(''), (val) => (str.length === 0 ? true : /^\d+$/.test(Number(val))));
 };
 
 const filterToOnlyDigits = function(str) {
-  // Your code goes here
+  return ((_.filter(str, (val) => !isNaN(Number(val)))).join()).replace(/,|\s/g,'');
 };
 
 const truncateString = function(val, maxLength) {
@@ -33,15 +34,26 @@ const truncateString = function(val, maxLength) {
 
 const truncateLongItems = function(obj, maxLength) {
   // hint: use truncateString above
-  // Your code goes here
+  const truncated =  [];
+  _.each(obj, (val, key, iterObj) => {
+    truncated.push(truncateString(val, maxLength));
+  });
+  return truncated;
 };
 
 const countChars = function(str) {
-  // Your code goes here
+  return _.reduce(str.split(''), function (obj,char) {
+    if (obj[char] === undefined) {
+      obj[char] = 1;
+    } else {
+      obj[char]++;
+    }
+    return obj;
+  }, {});
 };
 
 const dedup = function(str) {
-  // Your code goes here
+  return ((_.uniq(str)).join(',')).replace(/,/g,'');
 };
 
 module.exports = {

@@ -1,15 +1,15 @@
 const _ = require('../../underbar');
 
 describe('first()', () => {
-  it('returns the first element of an array', () => {
-    // Your code goes here
+  it('returns the first element of given array', () => {
+    expect(_.first(['z', 'y', 'z','w'])).toEqual('z');
   });
 
   it('returns the first 2 elements of an array', () => {
-    // Your code goes here
+    expect(_.first(['a','b','c'], 2)).toEqual(['a','b']);
   });
 
   it('returns the whole array if you ask for more elements than it has', () => {
-    // Your code goes here
+    expect(_.first(['a','b','c'], 5)).toEqual(['a','b','c']);
   });
 });
